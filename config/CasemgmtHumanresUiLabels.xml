@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
+    <property key="OnboardingStart">
+        <value xml:lang="en">Start Employee Onboarding</value>
+        <value xml:lang="ja">入社オンボーディング開始</value>
+    </property>
+    <property key="OnboardingFirstName">
+        <value xml:lang="en">First Name</value>
+        <value xml:lang="ja">名</value>
+    </property>
+    <property key="OnboardingMiddleName">
+        <value xml:lang="en">Middle Name</value>
+        <value xml:lang="ja">ミドルネーム</value>
+    </property>
+    <property key="OnboardingLastName">
+        <value xml:lang="en">Last Name</value>
+        <value xml:lang="ja">姓</value>
+    </property>
+    <property key="OnboardingEmail">
+        <value xml:lang="en">Personal Email</value>
+        <value xml:lang="ja">個人メールアドレス</value>
+    </property>
+    <property key="OnboardingTargetStartDate">
+        <value xml:lang="en">Target Start Date</value>
+        <value xml:lang="ja">入社予定日</value>
+    </property>
+    <property key="OnboardingNotes">
+        <value xml:lang="en">Notes</value>
+        <value xml:lang="ja">メモ</value>
+    </property>
+    <property key="OnboardingEmployeeRegistration">
+        <value xml:lang="en">Employee Registration</value>
+        <value xml:lang="ja">社員登録</value>
+    </property>
+    <property key="OnboardingDepartment">
+        <value xml:lang="en">Department Party ID</value>
+        <value xml:lang="ja">所属部門のパーティID</value>
+    </property>
+    <property key="OnboardingManager">
+        <value xml:lang="en">Manager Party ID</value>
+        <value xml:lang="ja">上長のパーティID</value>
+    </property>
+    <property key="OnboardingJobTitle">
+        <value xml:lang="en">Job Title</value>
+        <value xml:lang="ja">職種・役職</value>
+    </property>
+    <property key="OnboardingEmploymentFromDate">
+        <value xml:lang="en">Employment Start Date</value>
+        <value xml:lang="ja">雇用開始日</value>
+    </property>
+    <property key="OnboardingTraining">
+        <value xml:lang="en">Initial Training</value>
+        <value xml:lang="ja">初回研修</value>
+    </property>
+    <property key="OnboardingTrainingType">
+        <value xml:lang="en">Training Type</value>
+        <value xml:lang="ja">研修種別</value>
+    </property>
+    <property key="OnboardingCompletionDate">
+        <value xml:lang="en">Completion Date</value>
+        <value xml:lang="ja">完了日</value>
+    </property>
+    <property key="OnboardingEquipment">
+        <value xml:lang="en">Equipment Assignment</value>
+        <value xml:lang="ja">設備割当</value>
+    </property>
+    <property key="OnboardingAssetType">
+        <value xml:lang="en">Asset Type</value>
+        <value xml:lang="ja">資産種別</value>
+    </property>
+    <property key="OnboardingAssetName">
+        <value xml:lang="en">Asset Name</value>
+        <value xml:lang="ja">資産名</value>
+    </property>
+    <property key="OnboardingSerialNumber">
+        <value xml:lang="en">Serial Number</value>
+        <value xml:lang="ja">シリアル番号</value>
+    </property>
+    <property key="OnboardingAccount">
+        <value xml:lang="en">System Account</value>
+        <value xml:lang="ja">システムアカウント</value>
+    </property>
+    <property key="OnboardingUserLoginId">
+        <value xml:lang="en">User Login ID</value>
+        <value xml:lang="ja">ユーザーログインID</value>
+    </property>
+    <property key="OnboardingPassword">
+        <value xml:lang="en">Temporary Password</value>
+        <value xml:lang="ja">仮パスワード</value>
+    </property>
+    <property key="OnboardingPasswordVerify">
+        <value xml:lang="en">Temporary Password (Verify)</value>
+        <value xml:lang="ja">仮パスワード（確認）</value>
+    </property>
+    <property key="OnboardingRequirePasswordChange">
+        <value xml:lang="en">Require Password Change</value>
+        <value xml:lang="ja">初回パスワード変更を必須にする</value>
+    </property>
+    <property key="OnboardingComplete">
+        <value xml:lang="en">Onboarding Completion</value>
+        <value xml:lang="ja">オンボーディング完了</value>
+    </property>
+    <property key="OnboardingSubmitStart">
+        <value xml:lang="en">Start Onboarding</value>
+        <value xml:lang="ja">オンボーディングを開始</value>
+    </property>
+    <property key="OnboardingCompleteTask">
+        <value xml:lang="en">Complete Task</value>
+        <value xml:lang="ja">タスクを完了</value>
+    </property>
+</resource>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://ofbiz.apache.org/Widget-Form"
+        xsi:schemaLocation="http://ofbiz.apache.org/Widget-Form http://ofbiz.apache.org/dtds/widget-form.xsd">
+
+    <form name="OnboardingStartForm" type="single" target="StartCaseSubmit" title=""
+            default-table-style="basic-table">
+        <field name="caseTypeId"><hidden value="${caseTypeId}"/></field>
+        <field name="firstName" title="${uiLabelMap.OnboardingFirstName}" required-field="true"><text/></field>
+        <field name="middleName" title="${uiLabelMap.OnboardingMiddleName}"><text/></field>
+        <field name="lastName" title="${uiLabelMap.OnboardingLastName}" required-field="true"><text/></field>
+        <field name="personalEmail" title="${uiLabelMap.OnboardingEmail}"><text/></field>
+        <field name="targetStartDate" title="${uiLabelMap.OnboardingTargetStartDate}"><date-time/></field>
+        <field name="description" title="${uiLabelMap.OnboardingNotes}"><textarea/></field>
+        <field name="submitButton" title="${uiLabelMap.OnboardingSubmitStart}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="OnboardingEmployeeForm" type="single" target="TaskFormSubmit" title=""
+            default-table-style="basic-table">
+        <field name="caseTaskId"><hidden value="${caseTask.caseTaskId}"/></field>
+        <field name="caseId"><hidden value="${caseId}"/></field>
+        <field name="departmentPartyId" title="${uiLabelMap.OnboardingDepartment}" required-field="true"><text/></field>
+        <field name="managerPartyId" title="${uiLabelMap.OnboardingManager}">
+            <lookup target-form-name="LookupPartyName" size="20" maxlength="20"/>
+        </field>
+        <field name="jobTitle" title="${uiLabelMap.OnboardingJobTitle}"><text/></field>
+        <field name="employmentFromDate" title="${uiLabelMap.OnboardingEmploymentFromDate}"><date-time/></field>
+        <field name="notes" title="${uiLabelMap.OnboardingNotes}"><textarea/></field>
+        <field name="outcomeEnumId"><hidden value="CASE_OUT_COMPLETE"/></field>
+        <field name="submitButton" title="${uiLabelMap.OnboardingCompleteTask}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="OnboardingTrainingForm" type="single" target="TaskFormSubmit" title=""
+            default-table-style="basic-table">
+        <field name="caseTaskId"><hidden value="${caseTask.caseTaskId}"/></field>
+        <field name="caseId"><hidden value="${caseId}"/></field>
+        <field name="trainingClassTypeId" title="${uiLabelMap.OnboardingTrainingType}" required-field="true">
+            <drop-down>
+                <entity-options entity-name="TrainingClassType" key-field-name="trainingClassTypeId"
+                        description="${description}"/>
+            </drop-down>
+        </field>
+        <field name="completionDate" title="${uiLabelMap.OnboardingCompletionDate}"><date-time/></field>
+        <field name="notes" title="${uiLabelMap.OnboardingNotes}"><textarea/></field>
+        <field name="outcomeEnumId"><hidden value="CASE_OUT_COMPLETE"/></field>
+        <field name="submitButton" title="${uiLabelMap.OnboardingCompleteTask}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="OnboardingEquipmentForm" type="single" target="TaskFormSubmit" title=""
+            default-table-style="basic-table">
+        <field name="caseTaskId"><hidden value="${caseTask.caseTaskId}"/></field>
+        <field name="caseId"><hidden value="${caseId}"/></field>
+        <field name="fixedAssetTypeId" title="${uiLabelMap.OnboardingAssetType}" required-field="true">
+            <drop-down>
+                <entity-options entity-name="FixedAssetType" key-field-name="fixedAssetTypeId"
+                        description="${description}"/>
+            </drop-down>
+        </field>
+        <field name="fixedAssetName" title="${uiLabelMap.OnboardingAssetName}" required-field="true"><text/></field>
+        <field name="serialNumber" title="${uiLabelMap.OnboardingSerialNumber}"><text/></field>
+        <field name="notes" title="${uiLabelMap.OnboardingNotes}"><textarea/></field>
+        <field name="outcomeEnumId"><hidden value="CASE_OUT_COMPLETE"/></field>
+        <field name="submitButton" title="${uiLabelMap.OnboardingCompleteTask}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="OnboardingAccountForm" type="single" target="TaskFormSubmit" title=""
+            default-table-style="basic-table">
+        <field name="caseTaskId"><hidden value="${caseTask.caseTaskId}"/></field>
+        <field name="caseId"><hidden value="${caseId}"/></field>
+        <field name="userLoginId" title="${uiLabelMap.OnboardingUserLoginId}" required-field="true"><text/></field>
+        <field name="currentPassword" title="${uiLabelMap.OnboardingPassword}" required-field="true"><password/></field>
+        <field name="currentPasswordVerify" title="${uiLabelMap.OnboardingPasswordVerify}" required-field="true"><password/></field>
+        <field name="requirePasswordChange" title="${uiLabelMap.OnboardingRequirePasswordChange}">
+            <drop-down><option key="Y" description="Y"/><option key="N" description="N"/></drop-down>
+        </field>
+        <field name="notes" title="${uiLabelMap.OnboardingNotes}"><textarea/></field>
+        <field name="outcomeEnumId"><hidden value="CASE_OUT_COMPLETE"/></field>
+        <field name="submitButton" title="${uiLabelMap.OnboardingCompleteTask}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+
+    <form name="OnboardingCompletionForm" type="single" target="TaskFormSubmit" title=""
+            default-table-style="basic-table">
+        <field name="caseTaskId"><hidden value="${caseTask.caseTaskId}"/></field>
+        <field name="caseId"><hidden value="${caseId}"/></field>
+        <field name="notes" title="${uiLabelMap.OnboardingNotes}"><textarea/></field>
+        <field name="outcomeEnumId"><hidden value="CASE_OUT_COMPLETE"/></field>
+        <field name="submitButton" title="${uiLabelMap.OnboardingCompleteTask}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+</forms>

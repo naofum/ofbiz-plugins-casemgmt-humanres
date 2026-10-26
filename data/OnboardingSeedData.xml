@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entity-engine-xml>
+    <!-- Human resources onboarding case type. -->
+    <CaseType caseTypeId="ONBOARDING" caseTypeName="Employee Onboarding"
+            description="Employee onboarding from acceptance through account and equipment setup"
+            definitionVersion="1" activeDefinitionVersion="1" statusId="CASE_TYPE_ACTIVE"
+            defaultSlaId="ONBOARDING_SLA" accessPolicyId="ONBOARDING_ACCESS"
+            createdDate="2026-10-25 00:00:00.000" lastModifiedDate="2026-10-25 00:00:00.000"/>
+
+    <CaseQueue queueId="ONBOARDING_QUEUE" partyId="Company"
+            queueName="Employee Onboarding Queue" activeIndicator="Y"/>
+    <CaseAssignmentPolicy assignmentPolicyId="ONBOARDING_POLICY"
+            policyName="Employee onboarding queue" strategyEnumId="CASE_Q_PICK"
+            queueId="ONBOARDING_QUEUE" maxOpenTasks="0"
+            description="Leave onboarding tasks in the HR queue"/>
+
+    <CaseAccessPolicy accessPolicyId="ONBOARDING_ACCESS" caseTypeId="ONBOARDING"
+            description="Employee onboarding access policy"/>
+
+    <CaseSla slaId="ONBOARDING_SLA" slaName="Employee onboarding SLA"
+            calendarId="CASE_CAL_DEFAULT"
+            description="First response and onboarding completion SLA"/>
+    <CaseSlaMilestone slaId="ONBOARDING_SLA" milestoneSeq="1"
+            milestoneName="First response" milestoneTypeEnumId="SLA_FIRST_RESPONSE"
+            goalDuration="60" deadlineDuration="120" passedDeadlineDuration="180"
+            description="Acknowledge the onboarding request within 1-3 business hours"/>
+    <CaseSlaMilestone slaId="ONBOARDING_SLA" milestoneSeq="2"
+            milestoneName="Onboarding completion" milestoneTypeEnumId="SLA_RESOLUTION"
+            goalDuration="4320" deadlineDuration="7200" passedDeadlineDuration="10080"
+            description="Complete onboarding within 3-7 business days"/>
+    <CaseSlaRule slaId="ONBOARDING_SLA" ruleSeq="1" caseTypeId="ONBOARDING"
+            priority="1" sequenceNum="1"/>
+
+    <CaseStageDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="1"
+            stageName="Employee Registration" stageTypeEnumId="CASE_STAGE_PRIMARY" autoAdvance="N"
+            description="Register the employee and employment relationship"/>
+    <CaseStageDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="2"
+            stageName="Training" stageTypeEnumId="CASE_STAGE_PRIMARY" autoAdvance="N"
+            description="Complete the initial training"/>
+    <CaseStageDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="3"
+            stageName="Equipment" stageTypeEnumId="CASE_STAGE_PRIMARY" autoAdvance="N"
+            description="Assign required equipment"/>
+    <CaseStageDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="4"
+            stageName="Account" stageTypeEnumId="CASE_STAGE_PRIMARY" autoAdvance="N"
+            description="Create the employee system account"/>
+    <CaseStageDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="5"
+            stageName="Completion" stageTypeEnumId="CASE_STAGE_PRIMARY" autoAdvance="N"
+            description="Confirm onboarding completion"/>
+
+    <CaseStepDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="1" stepSeq="1"
+            stepName="Register employee" stepTypeEnumId="CASE_STEP_HUMAN_TASK"
+            assignmentPolicyId="ONBOARDING_POLICY" requiredIndicator="Y"
+            sequenceNum="1" description="Create employment and manager relationship"/>
+    <CaseStepDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="2" stepSeq="1"
+            stepName="Complete training" stepTypeEnumId="CASE_STEP_HUMAN_TASK"
+            assignmentPolicyId="ONBOARDING_POLICY" requiredIndicator="Y"
+            sequenceNum="1" description="Record initial training completion"/>
+    <CaseStepDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="3" stepSeq="1"
+            stepName="Assign equipment" stepTypeEnumId="CASE_STEP_HUMAN_TASK"
+            assignmentPolicyId="ONBOARDING_POLICY" requiredIndicator="Y"
+            sequenceNum="1" description="Assign a computer or other equipment"/>
+    <CaseStepDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="4" stepSeq="1"
+            stepName="Create account" stepTypeEnumId="CASE_STEP_HUMAN_TASK"
+            assignmentPolicyId="ONBOARDING_POLICY" requiredIndicator="Y"
+            sequenceNum="1" description="Create the employee user login"/>
+    <CaseStepDef caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="5" stepSeq="1"
+            stepName="Confirm completion" stepTypeEnumId="CASE_STEP_HUMAN_TASK"
+            assignmentPolicyId="ONBOARDING_POLICY" requiredIndicator="Y"
+            sequenceNum="1" description="Confirm that onboarding is complete"/>
+
+    <CaseStepTransition caseTypeId="ONBOARDING" definitionVersion="1" transitionSeq="1"
+            stageSeq="1" stepSeq="1" outcomeEnumId="CASE_OUT_COMPLETE"
+            toStageSeq="2" toStepSeq="1" priority="1" isDefault="Y"
+            description="Employee registered"/>
+    <CaseStepTransition caseTypeId="ONBOARDING" definitionVersion="1" transitionSeq="1"
+            stageSeq="2" stepSeq="1" outcomeEnumId="CASE_OUT_COMPLETE"
+            toStageSeq="3" toStepSeq="1" priority="1" isDefault="Y"
+            description="Training completed"/>
+    <CaseStepTransition caseTypeId="ONBOARDING" definitionVersion="1" transitionSeq="1"
+            stageSeq="3" stepSeq="1" outcomeEnumId="CASE_OUT_COMPLETE"
+            toStageSeq="4" toStepSeq="1" priority="1" isDefault="Y"
+            description="Equipment assigned"/>
+    <CaseStepTransition caseTypeId="ONBOARDING" definitionVersion="1" transitionSeq="1"
+            stageSeq="4" stepSeq="1" outcomeEnumId="CASE_OUT_COMPLETE"
+            toStageSeq="5" toStepSeq="1" priority="1" isDefault="Y"
+            description="Account created"/>
+
+    <CaseTypeStartForm caseTypeId="ONBOARDING" definitionVersion="1"
+            formLocation="component://casemgmt-humanres/widget/OnboardingForms.xml"
+            formName="OnboardingStartForm" formTarget="StartCaseSubmit"
+            startServiceName="onboardingStartCase" submitLabel="Start onboarding"
+            description="Onboarding request form"/>
+
+    <CaseStepForm caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="1" stepSeq="1"
+            formLocation="component://casemgmt-humanres/widget/OnboardingForms.xml"
+            formName="OnboardingEmployeeForm" formTarget="TaskFormSubmit"
+            completeServiceName="onboardingRegisterEmployee"
+            description="Employee registration form"/>
+    <CaseStepForm caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="2" stepSeq="1"
+            formLocation="component://casemgmt-humanres/widget/OnboardingForms.xml"
+            formName="OnboardingTrainingForm" formTarget="TaskFormSubmit"
+            completeServiceName="onboardingCompleteTraining"
+            description="Initial training form"/>
+    <CaseStepForm caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="3" stepSeq="1"
+            formLocation="component://casemgmt-humanres/widget/OnboardingForms.xml"
+            formName="OnboardingEquipmentForm" formTarget="TaskFormSubmit"
+            completeServiceName="onboardingAssignEquipment"
+            description="Equipment assignment form"/>
+    <CaseStepForm caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="4" stepSeq="1"
+            formLocation="component://casemgmt-humanres/widget/OnboardingForms.xml"
+            formName="OnboardingAccountForm" formTarget="TaskFormSubmit"
+            completeServiceName="onboardingCreateAccount"
+            description="System account form"/>
+    <CaseStepForm caseTypeId="ONBOARDING" definitionVersion="1" stageSeq="5" stepSeq="1"
+            formLocation="component://casemgmt-humanres/widget/OnboardingForms.xml"
+            formName="OnboardingCompletionForm" formTarget="TaskFormSubmit"
+            completeServiceName="onboardingCompleteCase"
+            description="Onboarding completion form"/>
+</entity-engine-xml>

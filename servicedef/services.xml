@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://ofbiz.apache.org/dtds/services.xsd">
+    <service name="onboardingStartCase" engine="groovy"
+            location="component://casemgmt-humanres/src/main/groovy/org/apache/ofbiz/casemgmt/humanres/OnboardingServices.groovy"
+            invoke="onboardingStartCase" auth="true">
+        <description>Create the employee party and return the case context link</description>
+        <required-permissions join-type="AND">
+            <check-permission permission="CASEMGMT_CREATE"/>
+        </required-permissions>
+        <attribute name="firstName" type="String" mode="IN" optional="false"/>
+        <attribute name="middleName" type="String" mode="IN" optional="true"/>
+        <attribute name="lastName" type="String" mode="IN" optional="false"/>
+        <attribute name="personalEmail" type="String" mode="IN" optional="true"/>
+        <attribute name="targetStartDate" type="String" mode="IN" optional="true"/>
+        <attribute name="description" type="String" mode="IN" optional="true"/>
+        <attribute name="partyId" type="String" mode="OUT" optional="true"/>
+        <attribute name="customerPartyId" type="String" mode="OUT" optional="true"/>
+        <attribute name="businessEntityName" type="String" mode="OUT" optional="true"/>
+        <attribute name="businessKeys" type="Map" mode="OUT" optional="true"/>
+        <attribute name="description" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="onboardingRegisterEmployee" engine="groovy"
+            location="component://casemgmt-humanres/src/main/groovy/org/apache/ofbiz/casemgmt/humanres/OnboardingServices.groovy"
+            invoke="onboardingRegisterEmployee" auth="true">
+        <description>Create employment and manager relationships for the onboarding employee</description>
+        <required-permissions join-type="AND">
+            <check-permission permission="CASEMGMT_UPDATE"/>
+        </required-permissions>
+        <attribute name="caseId" type="String" mode="IN" optional="false"/>
+        <attribute name="caseTaskId" type="String" mode="IN" optional="true"/>
+        <attribute name="departmentPartyId" type="String" mode="IN" optional="false"/>
+        <attribute name="managerPartyId" type="String" mode="IN" optional="true"/>
+        <attribute name="jobTitle" type="String" mode="IN" optional="true"/>
+        <attribute name="employmentFromDate" type="java.sql.Timestamp" mode="IN" optional="true"/>
+        <attribute name="notes" type="String" mode="IN" optional="true"/>
+        <attribute name="employeePartyId" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="onboardingCompleteTraining" engine="groovy"
+            location="component://casemgmt-humanres/src/main/groovy/org/apache/ofbiz/casemgmt/humanres/OnboardingServices.groovy"
+            invoke="onboardingCompleteTraining" auth="true">
+        <description>Record initial training completion for the onboarding employee</description>
+        <required-permissions join-type="AND">
+            <check-permission permission="CASEMGMT_UPDATE"/>
+        </required-permissions>
+        <attribute name="caseId" type="String" mode="IN" optional="false"/>
+        <attribute name="caseTaskId" type="String" mode="IN" optional="true"/>
+        <attribute name="trainingClassTypeId" type="String" mode="IN" optional="false"/>
+        <attribute name="completionDate" type="java.sql.Timestamp" mode="IN" optional="true"/>
+        <attribute name="notes" type="String" mode="IN" optional="true"/>
+        <attribute name="employeePartyId" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="onboardingAssignEquipment" engine="groovy"
+            location="component://casemgmt-humanres/src/main/groovy/org/apache/ofbiz/casemgmt/humanres/OnboardingServices.groovy"
+            invoke="onboardingAssignEquipment" auth="true">
+        <description>Create and assign equipment to the onboarding employee</description>
+        <required-permissions join-type="AND">
+            <check-permission permission="CASEMGMT_UPDATE"/>
+        </required-permissions>
+        <attribute name="caseId" type="String" mode="IN" optional="false"/>
+        <attribute name="caseTaskId" type="String" mode="IN" optional="true"/>
+        <attribute name="fixedAssetTypeId" type="String" mode="IN" optional="false"/>
+        <attribute name="fixedAssetName" type="String" mode="IN" optional="false"/>
+        <attribute name="serialNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="notes" type="String" mode="IN" optional="true"/>
+        <attribute name="employeePartyId" type="String" mode="OUT" optional="true"/>
+        <attribute name="fixedAssetId" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="onboardingCreateAccount" engine="groovy"
+            location="component://casemgmt-humanres/src/main/groovy/org/apache/ofbiz/casemgmt/humanres/OnboardingServices.groovy"
+            invoke="onboardingCreateAccount" auth="true">
+        <description>Create the employee user login account</description>
+        <required-permissions join-type="AND">
+            <check-permission permission="CASEMGMT_UPDATE"/>
+        </required-permissions>
+        <attribute name="caseId" type="String" mode="IN" optional="false"/>
+        <attribute name="caseTaskId" type="String" mode="IN" optional="true"/>
+        <attribute name="userLoginId" type="String" mode="IN" optional="false"/>
+        <attribute name="currentPassword" type="String" mode="IN" optional="false"/>
+        <attribute name="currentPasswordVerify" type="String" mode="IN" optional="false"/>
+        <attribute name="requirePasswordChange" type="String" mode="IN" optional="true"/>
+        <attribute name="notes" type="String" mode="IN" optional="true"/>
+        <attribute name="employeePartyId" type="String" mode="OUT" optional="true"/>
+        <attribute name="createdUserLoginId" type="String" mode="OUT" optional="true"/>
+    </service>
+
+    <service name="onboardingCompleteCase" engine="groovy"
+            location="component://casemgmt-humanres/src/main/groovy/org/apache/ofbiz/casemgmt/humanres/OnboardingServices.groovy"
+            invoke="onboardingCompleteCase" auth="true">
+        <description>Mark onboarding complete for the employee</description>
+        <required-permissions join-type="AND">
+            <check-permission permission="CASEMGMT_UPDATE"/>
+        </required-permissions>
+        <attribute name="caseId" type="String" mode="IN" optional="false"/>
+        <attribute name="caseTaskId" type="String" mode="IN" optional="true"/>
+        <attribute name="notes" type="String" mode="IN" optional="true"/>
+        <attribute name="employeePartyId" type="String" mode="OUT" optional="true"/>
+    </service>
+</services>
